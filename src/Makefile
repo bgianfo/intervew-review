@@ -5,11 +5,13 @@
 ############################################################
 CC = g++ -g -Wall -Wextra 
 
-default: atoi itoa merge
+default: atoi itoa merge quick
 
 merge: mergesort.cpp
 	$(CC) mergesort.cpp -o merge
 
+quick: quicksort.cpp
+	$(CC) quicksort.cpp -o quick
 
 atoi: atoi.cpp
 	$(CC) atoi.cpp -o atoi
@@ -25,5 +27,7 @@ clean:
 	rm -rf itoa.d*
 	rm -rf merge 
 	rm -rf merge.d*
+	rm -rf quick
+	rm -rf quick.d*
 
 
