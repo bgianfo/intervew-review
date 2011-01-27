@@ -5,7 +5,10 @@
 ############################################################
 CC = g++ -g -Wall -Wextra 
 
-default: atoi itoa merge quick
+default: atoi itoa merge quick hashmap
+
+hashmap: hashmap.cpp
+	$(CC) hashmap.cpp -o hashmap
 
 merge: mergesort.cpp
 	$(CC) mergesort.cpp -o merge
@@ -29,5 +32,8 @@ clean:
 	rm -rf merge.d*
 	rm -rf quick
 	rm -rf quick.d*
+	rm -rf hashmap
+	rm -rf hashmap.d*
+
 
 
