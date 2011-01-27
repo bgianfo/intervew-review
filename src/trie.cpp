@@ -7,7 +7,7 @@
 
 class Node {
     public:
-        static const int MAX_EDGES = 26;
+        static const int MAX_EDGES = 256;
         char character;
         bool endWord;
         int prefixes;
@@ -71,7 +71,7 @@ class Trie {
             Node* cur = root;
 
             while ( *word != '\0' ) {
-                int characterIndex = toupper(*word) - 'A';
+                int characterIndex = *word;
                 if ( cur->edges[characterIndex] == NULL ) {
                     Node* newNode = new Node();
                     newNode->character = *word;
@@ -96,11 +96,10 @@ class Trie {
         bool search( char* word ) {
             Node* cur = root;
             while ( *word != '\0' ) {
-                int characterIndex = toupper(*word) - 'A';
+                int characterIndex = *word;
                 if ( cur->edges[characterIndex] == NULL ) {
                     return false;
                 } else {
-                    std::cout << "Found: " << *word << std::endl;
                     cur = cur->edges[characterIndex];
                 }
                 word++;
@@ -111,7 +110,7 @@ class Trie {
         void remove( char* word ) {
             Node* cur = root;
             while ( *word != '\0' ) {
-                int characterIndex = toupper(*word) - 'A';
+                int characterIndex = *word;
                 if ( cur->edges[characterIndex] == NULL ) {
                     return;
                 } else if ( cur->edges[characterIndex]->prefixes == 1 ) {
@@ -131,20 +130,19 @@ int main()
 {
 
     Trie trie;
-    char* words[] = { "tree", "trie", "algo", "assoc", "all", "also", "ass" };
+    char* words[] = { "tree", "trie", "algo", "assoc", "all", "also", "ass", "PANDA" };
 
     for ( unsigned int i = 0; i < (sizeof(words)/sizeof(*words)); i++ ) {
         trie.insert( words[i] );
     }
  
-    trie.display();
-     
     if ( trie.search( "all" ) ) {
         cout << "all exist" << endl;
     } else {
         cout << "all do not exist" << endl;
     }
              
+    cout << "removing 'all'" << endl;
     trie.remove( "all" );
 
     if ( trie.search( "all" ) ) {
@@ -153,7 +151,6 @@ int main()
         cout << "all do not exist" << endl;
     }                   
 
-    trie.display();
 
     return 0;
 }
