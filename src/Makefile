@@ -5,7 +5,10 @@
 ############################################################
 CC = g++ -g -Wall -Wextra 
 
-default: atoi itoa merge quick hashmap
+default: atoi itoa merge quick hashmap btsearch
+
+btsearch: btsearch.cpp
+	$(CC) btsearch.cpp -o btsearch
 
 hashmap: hashmap.cpp
 	$(CC) hashmap.cpp -o hashmap
@@ -34,6 +37,8 @@ clean:
 	rm -rf quick.d*
 	rm -rf hashmap
 	rm -rf hashmap.d*
+	rm -rf btsearch
+	rm -rf btsearch.d*
 
 
 
